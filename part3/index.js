@@ -3,7 +3,11 @@ const morgan = require('morgan')
 const app = express()
 
 app.use(express.json())
-app.use(morgan('tiny'))
+
+morgan.token('wa', function getId (req, res) { 
+    return(JSON.stringify(req.body))
+})
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :wa'))
 
 let persons = [
     { 
@@ -68,6 +72,7 @@ const generateID = () => {
 }
 
 app.post('/api/persons', (request, response) => {
+
     const body = request.body
 
     if (!body.name || !body.number) {
@@ -93,6 +98,7 @@ app.post('/api/persons', (request, response) => {
     }
 
 })
+
 
 const PORT = 3001
     app.listen(PORT, () => {
