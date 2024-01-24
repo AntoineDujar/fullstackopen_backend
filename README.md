@@ -1,2 +1,2 @@
 fly.io testing website:
-https://phonebookfrontbackend.fly.dev/
+https://fullstackopenfrontbackend.fly.dev/
